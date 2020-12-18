@@ -12,6 +12,8 @@
 
 [Get one](https://github.com/probe-rs/hs-probe/issues/7#issuecomment-717924548)
 
+### USB-serial cable
+
 ### Keyboard FeatherWing
 
 [Documentation](https://www.solder.party/docs/keyboard-featherwing/)
@@ -75,4 +77,12 @@ chmod +x litex_setup.py
 ```console
 cd litex-boards/litex_boards/targets/
 ./orangecrab.py --build
+ecpdap program --freq=50000 build/orangecrab/gateware/orangecrab.bit
+```
+
+## Serial connection
+
+```
+Cable Rx (white) -- FPGA Tx (1)
+Cable Tx (green) -- FPGA Rx (0)
 ```
