@@ -86,3 +86,21 @@ ecpdap program --freq=50000 build/orangecrab/gateware/orangecrab.bit
 Cable Rx (white) -- FPGA Tx (1)
 Cable Tx (green) -- FPGA Rx (0)
 ```
+
+## Flash boot
+
+```python
+spi_pads = platform.request("spiflash4x")
+self.submodules.lxspi = spi_flash.SpiFlashDualQuad(spi_pads, dummy=6, endianness="little")
+self.lxspi.add_clk_primitive(platform.device)
+self.register_mem("spiflash", self.mem_map["spiflash"], self.lxspi.bus, size=16 * 1024 * 1024)
+
+self.constants["FLASH_BOOT_ADDRESS"] = self.mem_map['spiflash'] + 0x00100000
+```
+или
+
+```python
+self.add_spi_flash(...)
+```
+
++update `boot.c`
